@@ -15,6 +15,7 @@ class Admin::CategoriesController < ApplicationController
 		else
 			@categories = Category.all
 			render :index
+		end
 	end
 
 	private
@@ -22,5 +23,4 @@ class Admin::CategoriesController < ApplicationController
 	def category_params
 		params.require(:category).permit(:name)
 	end
-
 end
