@@ -7,7 +7,7 @@ class Admin::CategoriesController < ApplicationController
 		@categories = Category.all
 
 		if params[:id]
-			@category = Category.find(params[:id])
+			set_category
 		else
 			@category = Category.new
 		end
@@ -25,7 +25,7 @@ class Admin::CategoriesController < ApplicationController
 	end
 
 	def destroy
-		@category = Category.find(params[:id])
+		set_category
 		@category.destroy
 		flash[:alert] = "category was successfully deleted"
 		redirect_to admin_categories_path	
@@ -33,6 +33,10 @@ class Admin::CategoriesController < ApplicationController
 	
 
 	private
+
+	def set_category
+		@category = Category.find(params[:id])
+	end
 
 	def category_params
 		params.require(:category).permit(:name)
